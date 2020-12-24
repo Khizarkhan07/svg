@@ -1,0 +1,46 @@
+
+.svg-icon {
+    width: 1em;
+    height: 1em;
+  }
+  
+  .svg-icon path,
+  .svg-icon polygon,
+  .svg-icon rect {
+    fill: #4691f6;
+  }
+  
+  .svg-icon circle {
+    stroke: #4691f6;
+    stroke-width: 1;
+  }
+
+  body {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+  }
+  svg {
+    width: 30%;
+    height: 30%;
+    background: #eee;
+    margin-bottom: 5%;
+  }
+  svg polyline,
+  svg line,
+  svg path {
+    fill: none;
+    stroke: #000;
+    stroke-linejoin: round;
+    transition: 0.2s;
+  }
+
+  .svg-4:hover path {
+    d: path("M2,6 C3,3 8,3 8,6");
+  }
+   .svg-5:hover path {
+    d: path("M7,3 L4,5 L7 7");
+  }
+  .svg-6:hover path {
+    d: path("M4,3 L7,5 L4 7");
+  }

@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html>
+    <head><title>SVG</title>
+    </head>
+    <body>
+        <div>
+            <svg width="500" height="100">
+                <circle id="orange" r="30" cx="50" cy="50" fill="orange" />
+                
+                <animate 
+                    xlink:href="#orange"
+                    attributeName="cx"
+                    from="50"
+                    to="450" 
+                    dur="1s"
+                    begin="click"
+                    fill="freeze" />
+              </svg>
+              <p>click on circle to animate</p>
+        </div>
+        <hr>
+        <div>
+            <svg width="500" height="300">
+                <circle id="orange-circle" r="30" cx="50" cy="50" fill="orange" />
+    
+                <rect id="blue-rectangle" width="50" height="50" x="25" y="200" fill="#0099cc"></rect>
+    
+                <animate 
+                    xlink:href="#orange-circle"
+                    attributeName="cx"
+                    from="50"
+                    to="450" 
+                    dur="5s"
+                    repeatCount="2"
+                    begin="click"
+                    fill="freeze" 
+                    id="circ-anim" />
+    
+                <animate 
+                    xlink:href="#blue-rectangle"
+                    attributeName="x" 
+                    from="50"
+                    to="425" 
+                    dur="5s"
+                    repeatCount="indefinite"
+                    begin="circ-anim.begin + 1s"
+                    fill="freeze" 
+                    id="rect-anim" />
+            </svg>
+            <p>Click on the circle to animate it, and animate the rectangle after it.</p>
+        </div>
+        <div>
+            <svg width="350" height="350" viewBox="0 0 600 600" preserveAspectRatio="xMidYMin meet">
+                <g id="graphics" font-size="30">
+                  <rect width="100%" height="100%" fill="lightyellow"/>
+                <g>
+                  <circle cx="50" cy="100" r="100" fill="gray">
+                    <animate 
+                        attributeName="cx" 
+                        begin="0;graphics.click"
+                        values="50;500;300;400;50" 
+                        dur="20s"
+                        calcMode="linear"
+                    />
+                    <animate 
+                        attributeName="fill"  
+                        begin="0;graphics.click"
+                        dur="20s" 
+                        values="gray;darkred;red;cyan;lightcyan;green;purple;gray"
+                        calcMode="linear" 
+                             
+                    />
+                  </circle>
+                  <text x="50" y="100">linear</text>
+                </g>
+                <g>
+                  <circle cx="50" cy="300" r="100" fill="gray">
+                    <animate 
+                        attributeName="cx"  
+                        begin="0;graphics.click"
+                        values="50;500;300;400;50" 
+                        dur="20s"
+                        calcMode="paced"
+                    />
+                    <animate 
+                        attributeName="fill" attributeType="XML"  
+                        begin="0;graphics.click"
+                        dur="20s" 
+                        values="gray;darkred;red;cyan;lightcyan;green;purple;gray"
+                        calcMode="paced" 
+                    />
+                  </circle>
+                  <text x="50" y="300">paced</text>
+                </g>
+                <g>
+                  <circle cx="50" cy="500" r="100" fill="gray">
+                    <animate 
+                        attributeName="cx" attributeType="XML"  
+                        begin="0;graphics.click"
+                        values="50;500;300;400;50" 
+                        dur="20s"
+                        calcMode="discrete" 
+                    />
+                    <animate 
+                        attributeName="fill" attributeType="XML" 
+                        begin="0;graphics.click"
+                        dur="20s" 
+                        values="gray;darkred;red;cyan;lightcyan;green;purple;gray"
+                        calcMode="discrete"
+                        />
+                  </circle>
+                  <text x="50" y="500">discrete</text>
+                </g>
+                </g>
+              </svg>
+        </div>
+        <div>
+          <h5>Additive vs Accumulative sum</h5>
+          <svg width="500" height="100">
+            <circle id="orange-additive-circle" r="30" cx="50" cy="50" fill="orange" />
+            
+            <animate 
+                      xlink:href="#orange-additive-circle"
+                      attributeName="cx"
+                      from="0"
+                      to="100" 
+                      additive="sum"
+                      repeatCount="3"
+                      dur="1s"
+                      begin="click"
+                      fill="freeze" />
+          </svg>
+          <p>Click on the circle to animate using additive property.</p>
+
+        </div>
+
+        <div>
+          <svg width="500" height="100">
+            <circle id="orange-ac-circle" r="30" cx="50" cy="50" fill="orange" />
+            
+            <animate 
+                      xlink:href="#orange-ac-circle"
+                      attributeName="cx"
+                      from="0"
+                      to="100" 
+                      additive="sum"
+                      accumulate="sum"
+                      repeatCount="3"
+                      calcMode="spline"
+                      keyTimes="0;1"
+                      keySplines=".42 0 1 1"
+                      dur="1s"
+                      begin="click"
+                      fill="freeze" />
+          </svg>
+          <p>Click on the circle to animate it using accumulate property.</p>
+        </div>
+        <div>
+          <div class="ball"></div>
+          <svg width="500" height="350">
+            <circle id="orange-bouncy-circle" r="30" cx="50" cy="50" fill="orange" />
+            
+            <animate 
+              xlink:href="#orange-bouncy-circle"
+              attributeName="cy"
+              from="50"
+              to="250" 
+              dur="3s"
+              begin="click"
+              calcMode="spline"
+              values="50; 250; 120; 250; 170; 250; 210; 250"
+              keyTimes="0; 0.15; 0.3; 0.45; 0.6; 0.75; 0.9; 1"
+              keySplines="0.42 0 1 1;
+                          0 0 0.59 1;
+                          0.42 0 1 1;
+                          0 0 0.59 1;
+                          0.42 0 1 1;
+                          0 0 0.59 1;
+                          0.42 0 1 1"
+              fill="freeze"  
+              id="circ-anim"/>
+          </svg>
+          <p>Click on the circle to start the animation.</p>
+        </div>
+        <div>
+          <svg width="500" height="200">
+            <circle id="blue-circle" r="30" cx="50" cy="50" fill="blue" />
+            <circle id="green-circle" r="30" cx="50" cy="150" fill="#009966" />
+            
+            <animate 
+              xlink:href="#blue-circle"
+              attributeName="cx"
+              from="50"
+              to="450" 
+              dur="30s"
+              begin="0s"
+              end="gCircAnim.begin"
+              fill="freeze" 
+              id="oCircAnim"
+            />
+            <animate 
+              xlink:href="#green-circle"
+              attributeName="cx"
+              from="50"
+              to="450" 
+              dur="1s"
+              begin="click"
+              fill="freeze"
+              id="gCircAnim"
+            />
+          </svg>
+          <p>click on green circle to stop animating blue one</p>
+
+          <div>
+            <svg width="500" height="100">
+              <circle id="orange-circle-color" r="30" cx="50" cy="50" fill="#0099CC" />
+              
+              <animate 
+                xlink:href="#orange-circle-color"
+                attributeName="cx"
+                from="50"
+                to="450" 
+                dur="1s"
+                begin="click"
+                fill="freeze" 
+                id="move"
+              />
+              <animate 
+                xlink:href="#orange-circle-color"
+                attributeName="fill"
+                from="#0099CC"
+                to="deepPink" 
+                dur="5s"
+                repeatCount="indefinite"
+                begin="0s"
+                end="move.begin"
+                fill="freeze"
+                id="changeColor"
+              />
+            </svg>
+            <p>Click on the circle to stop changing color</p>
+          </div>
+        </div>
+    </body>
+</html>
